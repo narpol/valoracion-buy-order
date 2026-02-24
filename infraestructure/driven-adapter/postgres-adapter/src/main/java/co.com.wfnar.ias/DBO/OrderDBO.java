@@ -1,6 +1,5 @@
 package co.com.wfnar.ias.DBO;
 
-import co.com.wfnar.ias.Product;
 import co.com.wfnar.ias.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,7 +19,8 @@ public class OrderDBO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String customerId;
-    List<Product> products;
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    List<ProductDBO> products;
     Double totalAmount;
     Status status;
 }

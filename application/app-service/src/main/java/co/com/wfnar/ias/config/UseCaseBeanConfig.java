@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class UseCaseBeanConfig {
 
-    @Bean
+/*    @Bean
     public OrderUseCase orderUseCase(OrderGateway orderGateway){
         return new OrderUseCase(orderGateway);
-    }
+    }*/
 }
