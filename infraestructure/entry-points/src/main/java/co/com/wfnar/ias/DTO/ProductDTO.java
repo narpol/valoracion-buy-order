@@ -1,21 +1,17 @@
 package co.com.wfnar.ias.DTO;
 
-import co.com.wfnar.ias.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class OrderDTO {
+public class ProductDTO {
 
     Long id;
-    String customerId;
-    List<ProductDTO> products;
-    Double totalAmount;
-    Status status;
+    String productName;
+    Double price;
+
 
 }
