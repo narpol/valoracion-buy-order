@@ -21,9 +21,12 @@ public class OrderDBO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String customerId;
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<ProductDBO> products;
+
     private Double totalAmount;
+
     @Enumerated(EnumType.STRING)
     private Status status;
 

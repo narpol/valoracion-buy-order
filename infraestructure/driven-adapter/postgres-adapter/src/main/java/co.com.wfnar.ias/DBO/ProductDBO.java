@@ -20,6 +20,7 @@ public class ProductDBO {
     private Long id;
     private String productName;
     private Double price;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private OrderDBO order;

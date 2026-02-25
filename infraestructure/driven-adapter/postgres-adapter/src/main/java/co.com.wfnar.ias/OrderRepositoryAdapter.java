@@ -21,6 +21,8 @@ public class OrderRepositoryAdapter implements OrderGateway {
 
     @Override
     public Order getOrderById(Long id) {
-        return null;
+        return orderRepository.findById(id)
+                .map(OrderDBO::toDomain)
+                .orElseThrow( () -> new RuntimeException("Order Not Found"));
     }
 }
