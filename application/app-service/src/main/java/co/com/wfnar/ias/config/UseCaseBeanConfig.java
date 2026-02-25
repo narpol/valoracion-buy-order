@@ -1,7 +1,7 @@
 package co.com.wfnar.ias.config;
 
 import co.com.wfnar.ias.OrderUseCase;
-import co.com.wfnar.ias.gateway.OrderGateway;
+import co.com.wfnar.ias.gateway.OrderRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class UseCaseBeanConfig {
 
     @Bean
-    public OrderUseCase orderUseCase(OrderGateway orderGateway){
-        return new OrderUseCase(orderGateway);
+    public OrderUseCase orderUseCase(OrderRepository orderRepository){
+        return new OrderUseCase(orderRepository);
     }
 }

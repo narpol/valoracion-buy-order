@@ -1,14 +1,13 @@
 package co.com.wfnar.ias;
 
 import co.com.wfnar.ias.DBO.OrderDBO;
-import co.com.wfnar.ias.gateway.OrderGateway;
+import co.com.wfnar.ias.gateway.OrderRepository;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
 @Repository
-public class OrderRepositoryAdapter implements OrderGateway {
+public class OrderRepositoryAdapter implements OrderRepository {
 
     private final IOrderRepository orderRepository;
 
