@@ -16,38 +16,18 @@ public class OrderUseCase {
 
     public String confirmOrder(Long id){
         Order order = orderGateway.getOrderById(id);
-        Order modifiOrder = confrim(order.getId());
+        order.confrim();
         return orderGateway.saveOrder(order);
     }
 
     public String cancelOrder(Long id){
         Order order = orderGateway.getOrderById(id);
-        Order modifiOrder = cancel(order.getId());
+        order.cancel();
         return orderGateway.saveOrder(order);
     }
 
     public Order getOrderById(Long id){
         return orderGateway.getOrderById(id);
-    }
-
-    private Order confrim(Long id){
-        Order order = orderGateway.getOrderById(id);
-        if(order.getStatus() != Status.CREATED){
-            throw new IllegalArgumentException("Order status is not CREATED");
-        }
-        order.setStatus(Status.CONFIRMED);
-
-        return order;
-    }
-
-    private Order cancel(Long id){
-        Order order = orderGateway.getOrderById(id);
-        if(order.getStatus() != Status.CREATED){
-            throw new IllegalArgumentException("Order status is not CREATED");
-        }
-        order.setStatus(Status.CANCELLED);
-
-        return order;
     }
 
 }

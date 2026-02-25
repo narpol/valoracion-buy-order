@@ -23,12 +23,22 @@ public class Order {
         return totalAmount;
     }
 
-    public Long getId() {
-        return id;
+    public void confrim(){
+        if( this.status != Status.CREATED){
+            throw new IllegalArgumentException("Order status is not CREATED");
+        }
+        this.status = Status.CONFIRMED;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void cancel(){
+        if(this.status != Status.CREATED){
+            throw new IllegalArgumentException("Order status is not CREATED");
+        }
+        this.status = Status.CANCELLED;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getCustomerId() {
@@ -47,8 +57,6 @@ public class Order {
         return status;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
-    }
+
 
 }
