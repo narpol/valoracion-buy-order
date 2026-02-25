@@ -5,21 +5,44 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/order", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/orders", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 public class OrderEntryPoint {
 
-    private OrderUseCase orderUseCase;
+    private final OrderUseCase orderUseCase;
 
     @PostMapping
-    public ResponseEntity<String> processOrder(@RequestBody OrderDTO orderDto){
-        String message = orderUseCase.createOrder(OrderDTO.toDomain(orderDto));
-        return new ResponseEntity<>(message, HttpStatus.CREATED);
+    public ResponseEntity<OrderDTO> processOrder(@RequestBody OrderDTO orderDto){
+        Order order = orderUseCase.createOrder(OrderDTO.toDomain(orderDto));
+        OrderDTO dto = OrderDTO.fromDomain(order);
+        return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderDTO> getOrderById(@PathVariable Long id){
+        Order order = orderUseCase.getOrderById(id);
+        OrderDTO dto = OrderDTO.fromDomain(order);
+
+        return new ResponseEntity<>(dto, HttpStatus.FOUND);
+    }
+
+    @PutMapping("/{id}/confrim")
+    public ResponseEntity<OrderDTO> confirmOrder(@PathVariable Long id){
+        Order order = orderUseCase.cancelOrder(id);
+        OrderDTO dto = OrderDTO.fromDomain(order);
+
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}/cancel")
+    public ResponseEntity<OrderDTO> cancelOrder(@PathVariable Long id){
+        Order order = orderUseCase.cancelOrder(id);
+        OrderDTO dto = OrderDTO.fromDomain(order);
+
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
 }

@@ -5,12 +5,12 @@ import co.com.wfnar.ias.Product;
 import co.com.wfnar.ias.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Data
 public class OrderDTO {
 

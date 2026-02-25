@@ -3,6 +3,7 @@ package co.com.wfnar.ias;
 import co.com.wfnar.ias.DBO.OrderDBO;
 import co.com.wfnar.ias.gateway.OrderGateway;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
@@ -12,11 +13,9 @@ public class OrderRepositoryAdapter implements OrderGateway {
     private final IOrderRepository orderRepository;
 
     @Override
-    public String saveOrder(Order order) {
-
-        orderRepository.save(OrderDBO.fromDomain(order));
-
-        return "The Order was created";
+    public Order saveOrder(Order order) {
+        OrderDBO orderDBO = orderRepository.save(OrderDBO.fromDomain(order));
+        return OrderDBO.toDomain(orderDBO);
     }
 
     @Override

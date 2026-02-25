@@ -10,17 +10,17 @@ public class OrderUseCase {
         this.orderGateway = orderGateway;
     }
 
-    public String createOrder(Order order){
+    public Order createOrder(Order order){
         return orderGateway.saveOrder(order);
     }
 
-    public String confirmOrder(Long id){
+    public Order confirmOrder(Long id){
         Order order = orderGateway.getOrderById(id);
         order.confrim();
         return orderGateway.saveOrder(order);
     }
 
-    public String cancelOrder(Long id){
+    public Order cancelOrder(Long id){
         Order order = orderGateway.getOrderById(id);
         order.cancel();
         return orderGateway.saveOrder(order);

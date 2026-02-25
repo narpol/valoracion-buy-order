@@ -4,7 +4,7 @@ import co.com.wfnar.ias.Order;
 
 public interface OrderGateway {
 
-    String saveOrder(Order order);
+    Order saveOrder(Order order);
     Order getOrderById(Long id);
 
 }

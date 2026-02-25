@@ -3,10 +3,10 @@ package co.com.wfnar.ias.DTO;
 import co.com.wfnar.ias.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Data
 public class ProductDTO {
 
