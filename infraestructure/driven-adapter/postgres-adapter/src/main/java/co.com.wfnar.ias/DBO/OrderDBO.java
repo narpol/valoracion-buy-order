@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -19,25 +19,38 @@ public class OrderDBO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String customerId;
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-    List<ProductDBO> products;
-    Double totalAmount;
-    Status status;
+    private Long id;
+    private String customerId;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<ProductDBO> products;
+    private Double totalAmount;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     public static OrderDBO fromDomain(Order order) {
-        List<ProductDBO>  productsDto = order.getProducts().stream().map(ProductDBO::fromDomain).toList();
 
-        OrderDBO orderDTO = new OrderDBO(
+        OrderDBO orderDBO = new OrderDBO(
                 order.getId(),
                 order.getCustomerId(),
-                productsDto,
+                null,
                 order.getTotalAmount(),
                 order.getStatus()
         );
 
-        return orderDTO;
+        List<ProductDBO>  productsDbo = order.getProducts()
+                .stream()
+                .map(productDBO -> {
+                    ProductDBO producto = ProductDBO.fromDomain(productDBO);
+                    producto.setOrder(orderDBO);
+
+                    return producto;
+                })
+                .toList();
+
+        orderDBO.products = productsDbo;
+
+
+        return orderDBO;
     }
 
     public static Order toDomain(OrderDBO orderDBO) {
