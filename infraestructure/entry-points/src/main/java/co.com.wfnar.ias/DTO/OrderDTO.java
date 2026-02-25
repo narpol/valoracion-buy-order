@@ -41,9 +41,7 @@ public class OrderDTO {
         Order order = new Order(
                 orderDTO.getId(),
                 orderDTO.getCustomerId(),
-                products,
-                orderDTO.totalAmount,
-                orderDTO.getStatus()
+                products
         );
 
         return  order;

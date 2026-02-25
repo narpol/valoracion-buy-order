@@ -47,9 +47,7 @@ public class OrderDBO {
         Order order = new Order(
                 orderDBO.getId(),
                 orderDBO.getCustomerId(),
-                products,
-                orderDBO.totalAmount,
-                orderDBO.getStatus()
+                products
         );
 
         return  order;
