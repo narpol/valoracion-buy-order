@@ -1,5 +1,6 @@
 package co.com.wfnar.ias;
 
+import co.com.wfnar.ias.DBO.OrderDBO;
 import co.com.wfnar.ias.gateway.OrderGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -12,7 +13,10 @@ public class OrderRepositoryAdapter implements OrderGateway {
 
     @Override
     public String createOrder(Order order) {
-        return "";
+
+        orderRepository.save(OrderDBO.fromDomain(order));
+
+        return "The Order was created";
     }
 
     @Override
