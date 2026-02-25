@@ -10,12 +10,17 @@ public class Order {
     Double totalAmount;
     Status status;
 
-    public Order(Long id, String customerId, List<Product> products, Double totalAmount, Status status) {
+    public Order(Long id, String customerId, List<Product> products) {
         this.id = id;
         this.customerId = customerId;
         this.products = products;
-        this.totalAmount = totalAmount;
-        this.status = status;
+        this.totalAmount = calculateTotalAmount(products);
+        this.status = Status.CREATED;
+    }
+
+    private Double calculateTotalAmount(List<Product> products) {
+        Double totalAmount = products.stream().mapToDouble(Product::getPrice).sum();
+        return totalAmount;
     }
 
     public Long getId() {
@@ -30,24 +35,12 @@ public class Order {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
     public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
     public Double getTotalAmount() {
         return totalAmount;
-    }
-
-    public void setTotalAmount(Double totalAmount) {
-        this.totalAmount = totalAmount;
     }
 
     public Status getStatus() {
