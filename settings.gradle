@@ -5,10 +5,14 @@ include ':model'
 include ':usecase'
 include ':entry-points'
 include ':postgres-adapter'
+include ':h2-adapter'
 
 project(':app-service').projectDir = file('./application/app-service')
 project(':model').projectDir = file('./domain/model')
 project(':usecase').projectDir = file('./domain/usecase')
 project(':entry-points').projectDir = file('./infraestructure/entry-points')
 project(':postgres-adapter').projectDir = file('./infraestructure/driven-adapter/postgres-adapter')
+project(':h2-adapter').projectDir = file('./infraestructure/driven-adapter/h2-adapter')
+
+
 

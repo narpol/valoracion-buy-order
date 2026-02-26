@@ -12,4 +12,6 @@ public class UseCaseBeanConfig {
     public OrderUseCase orderUseCase(OrderRepository orderRepository){
         return new OrderUseCase(orderRepository);
     }
+
+
 }

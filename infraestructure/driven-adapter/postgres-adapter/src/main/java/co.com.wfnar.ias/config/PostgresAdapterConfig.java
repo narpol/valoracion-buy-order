@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PostgresAdapterConfig {
 
-    @Bean
+/*    @Bean
     public OrderRepository orderRepository(IOrderRepository orderRepository) {
         return new OrderRepositoryAdapter(orderRepository);
-    }
+    }*/
 }

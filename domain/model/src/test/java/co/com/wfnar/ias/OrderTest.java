@@ -19,6 +19,5 @@ public class OrderTest {
         Assertions.assertEquals(Status.CREATED, order.getStatus());
         Assertions.assertEquals(2500000.00, order.getTotalAmount());
 
-
     }
 }
