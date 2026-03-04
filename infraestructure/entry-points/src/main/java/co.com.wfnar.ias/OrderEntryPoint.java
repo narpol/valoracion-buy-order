@@ -22,7 +22,7 @@ public class OrderEntryPoint {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderDTO> getOrderById(@PathVariable Long id){
+    public ResponseEntity<OrderDTO> getOrderById(@PathVariable("id") Long id){
         Order order = orderUseCase.getOrderById(id);
         OrderDTO dto = OrderDTO.fromDomain(order);
 
