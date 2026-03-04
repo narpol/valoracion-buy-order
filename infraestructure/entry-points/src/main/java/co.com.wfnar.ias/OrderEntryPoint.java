@@ -30,7 +30,7 @@ public class OrderEntryPoint {
     }
 
     @PutMapping("/{id}/confrim")
-    public ResponseEntity<OrderDTO> confirmOrder(@PathVariable Long id){
+    public ResponseEntity<OrderDTO> confirmOrder(@PathVariable("id") Long id){
         Order order = orderUseCase.cancelOrder(id);
         OrderDTO dto = OrderDTO.fromDomain(order);
 
@@ -38,7 +38,7 @@ public class OrderEntryPoint {
     }
 
     @PutMapping("/{id}/cancel")
-    public ResponseEntity<OrderDTO> cancelOrder(@PathVariable Long id){
+    public ResponseEntity<OrderDTO> cancelOrder(@PathVariable("id") Long id){
         Order order = orderUseCase.cancelOrder(id);
         OrderDTO dto = OrderDTO.fromDomain(order);
 
