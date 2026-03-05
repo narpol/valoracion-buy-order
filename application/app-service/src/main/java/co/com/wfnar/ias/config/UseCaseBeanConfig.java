@@ -1,9 +1,11 @@
 package co.com.wfnar.ias.config;
 
+import co.com.wfnar.ias.CreateUserUseCase;
 import co.com.wfnar.ias.H2OrderRepositoryAdapter;
 import co.com.wfnar.ias.OrderRepositoryAdapter;
 import co.com.wfnar.ias.OrderUseCase;
 import co.com.wfnar.ias.gateway.OrderRepository;
+import co.com.wfnar.ias.gateway.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -24,6 +26,11 @@ public class UseCaseBeanConfig {
     public OrderUseCase postgresOrderUseCase(OrderRepositoryAdapter orderRepositoryAdapter){
         return new OrderUseCase(orderRepositoryAdapter);
     }
+
+/*    @Bean
+    public CreateUserUseCase createUserUseCase(UserRepository userRepository){
+        return new CreateUserUseCase(userRepository);
+    }*/
 
 
 }
